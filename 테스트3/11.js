@@ -1,12 +1,16 @@
-function Student (name, gender, school) {
+function Person(name, gender) {
   this.name = name;
   this.gender = gender;
+}
+
+
+function Student (name, gender, school) {
+  Person.call(this, name, gender);
   this.school = school;
 }
 
 function Employee (name, gender, company) {
-  this.name = name;
-  this.gender = gender;
+  Person.call(this, name, gender);
   this.company = company;
 }
 
