@@ -17,6 +17,7 @@ class Animal {
 
 class Dog extends Animal {
   // 부모에게서 내려받은 메서드를 재정의할 수 있음
+  // overriding...
   speak() {
     console.log(`${this.name} barks!!`);
   }
