@@ -1,25 +1,7 @@
-import logo from "logo.svg";
-import "App.css";
+import React from "react";
+import Layout from "Layout";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <Layout>App 컴포넌트에서 보낸 값입니다!</Layout>;
 }
-
 export default App;
