@@ -1,9 +1,6 @@
-import React, { Children } from "react";
+import React from "react";
 
-function Child({ age, name, children }) {
-  console.log(age);
-  console.log(name);
-  console.log(children);
+function Child() {
   return <div>Child</div>;
 }
 

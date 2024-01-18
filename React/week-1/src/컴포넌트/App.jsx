@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [obj, setObj] = useState({
+    name: "wonjang",
+    age: 21,
+  });
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
+      <div>{obj.name}</div>
+      <button
+        onClick={() => {
+          obj.name = "twojang";
+          const obj2 = { ...obj };
+          setObj(obj2);
         }}
       >
-        {count}
-      </div>
-      <button>+</button>
-      <button>-</button>
+        변경
+      </button>
     </div>
   );
 }
