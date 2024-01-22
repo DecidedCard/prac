@@ -3,8 +3,8 @@ import "./App.css";
 
 function App() {
   const initialArray = [
-    "apple",
     "banana",
+    "apple",
     "cherry",
     "elderberry",
     "watermaelon",
@@ -17,8 +17,8 @@ function App() {
 
   const handleForEach = () => {
     let tempResult = "";
-    array.forEach((fruits) => {
-      tempResult += `${fruits}, `;
+    array.forEach((fruits, index) => {
+      tempResult += `${index} : ${fruits}, `;
     });
 
     setResult(tempResult.slice(0, -2));
@@ -66,11 +66,59 @@ function App() {
     setResult(backupArray.join(", "));
   };
 
+  const handleSlice = () => {
+    const backupArray = [...array];
+    const check = backupArray.slice(0, -2);
+    setResult(check.join(", "));
+  };
+
+  const handleSplice = () => {
+    const backupArray = [...array];
+    backupArray.splice(2, 2, "kiwi", "lime");
+    setResult(backupArray.join(", "));
+  };
+
+  const handleIndexOf = () => {
+    setResult(array.indexOf(query));
+  };
+
+  const handleIncludes = () => {
+    setResult(`${array.includes(query)}`);
+  };
+
+  const handleFind = () => {
+    const check = array.find((e) => e === query);
+    if (check === undefined) {
+      setResult("Not Found");
+    } else {
+      setResult(check);
+    }
+  };
+
+  const handleSome = () => {
+    setResult(`${array.some((e) => e === query)}`);
+  };
+
+  const handleEvery = () => {
+    setResult(`${array.every((cur) => cur > 5)}`);
+  };
+
+  const handleSort = () => {
+    const backupArray = [...array];
+    backupArray.sort();
+    setResult(backupArray.join(", "));
+  };
+
+  const handleJoin = () => {
+    setResult(array.join("-"));
+  };
+
   return (
-    <div>
-      <h1>Array API Practice</h1>
+    <div className="main">
+      <h1>Standard반 배열 API</h1>
       <div>
         <input
+          placeholder="Enter text"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -84,12 +132,21 @@ function App() {
         <button onClick={handleReduce}>reduce</button>
         <button onClick={handlePush}>push</button>
         <button onClick={handlePop}>pop</button>
+        <button onClick={handleSlice}>slice</button>
+        <button onClick={handleSplice}>splice</button>
+        <button onClick={handleIndexOf}>indexOf</button>
+        <button onClick={handleIncludes}>include</button>
+        <button onClick={handleFind}>find</button>
+        <button onClick={handleSome}>some</button>
+        <button onClick={handleEvery}>every</button>
+        <button onClick={handleSort}>sort</button>
+        <button onClick={handleJoin}>join</button>
       </div>
-      <div>
-        <strong>Array</strong> : {array.join(", ")}
+      <div className="array">
+        <strong>원본배열 </strong> : {array.join(", ")}
       </div>
-      <div>
-        <strong>Result</strong> : {result}
+      <div className="array">
+        <strong>결과물 </strong> : {result}
       </div>
     </div>
   );
