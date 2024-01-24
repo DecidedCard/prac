@@ -1,24 +1,33 @@
-import { useState } from "react";
-import "./App.css";
+import React, { useEffect, useRef, useState } from "react";
 
 function App() {
-  const [number, setNumber] = useState(0);
+  const idRef = useRef("");
+  const pwRef = useRef("");
+  const [id, setId] = useState("");
+
+  useEffect(() => {
+    idRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    if (id.length >= 10) {
+      pwRef.current.focus();
+    }
+  }, [id]);
+
+  const onChangeHandler = (e) => {
+    setId(e.target.value);
+  };
+
   return (
     <>
-      <div>{number}</div>
-      <button
-        onClick={() => {
-          // setNumber(number + 1);
-          // setNumber(number + 1);
-          // setNumber(number + 1);
-
-          setNumber((num) => num + 1);
-          setNumber((num) => num + 1);
-          setNumber((num) => num + 1);
-        }}
-      >
-        누르면 UP
-      </button>
+      <div>
+        아이디 :{" "}
+        <input type="text" ref={idRef} value={id} onChange={onChangeHandler} />
+      </div>
+      <div>
+        비밀번호 : <input type="password" ref={pwRef} />
+      </div>
     </>
   );
 }
