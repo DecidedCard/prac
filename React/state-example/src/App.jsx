@@ -1,32 +1,38 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useImperativeHandle, useState } from "react";
+import Box1 from "./components/Box1";
+import Box2 from "./components/Box2";
+import Box3 from "./components/Box3";
 
 function App() {
-  const idRef = useRef("");
-  const pwRef = useRef("");
-  const [id, setId] = useState("");
+  const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    idRef.current.focus();
-  }, []);
-
-  useEffect(() => {
-    if (id.length >= 10) {
-      pwRef.current.focus();
-    }
-  }, [id]);
-
-  const onChangeHandler = (e) => {
-    setId(e.target.value);
+  const onPlusButtonClickHandler = () => {
+    setCount(count + 1);
   };
 
+  const onMinusButtonClickHandler = () => {
+    setCount(count - 1);
+  };
+
+  const initBtn = useCallback(() => {
+    console.log(`${count}에서 0으로 변했습니다.`);
+    setCount(0);
+  }, [count]);
   return (
     <>
-      <div>
-        아이디 :{" "}
-        <input type="text" ref={idRef} value={id} onChange={onChangeHandler} />
-      </div>
-      <div>
-        비밀번호 : <input type="password" ref={pwRef} />
+      <h3>카운트 예제입니다!</h3>
+      <p>현재 카운트 : {count}</p>
+      <button onClick={onPlusButtonClickHandler}>+</button>
+      <button onClick={onMinusButtonClickHandler}>-</button>
+      <div
+        style={{
+          display: "flex",
+          marginTop: "10px",
+        }}
+      >
+        <Box1 initBtn={initBtn} />
+        <Box2 />
+        <Box3 />
       </div>
     </>
   );
