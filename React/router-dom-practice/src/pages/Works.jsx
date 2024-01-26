@@ -1,21 +1,18 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { data } from "../shared/data";
 
 function Works() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  console.log(location);
   return (
     <div>
-      Works <br />
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Home로 이동
-      </button>
+      <h3>할일 목록</h3>
+      {data.map((e) => {
+        return (
+          <div key={e.id}>
+            {e.id}, <Link to={`/works/${e.id}`}>{e.todo}</Link>
+          </div>
+        );
+      })}
     </div>
   );
 }
