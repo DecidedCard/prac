@@ -1,9 +1,10 @@
-import axios from "axios";
+// import axios from "axios";
+import api from "./axios/api";
 import { useEffect, useState } from "react";
 
 function App() {
   const [todos, setTodos] = useState(null);
-  const [inputValue, setInputValue] = useState({
+  const [todo, setTodo] = useState({
     title: "",
   });
   const [targetId, setTargetId] = useState("");
@@ -11,7 +12,7 @@ function App() {
 
   // 조회 함수
   const fetchTodos = async () => {
-    const { data } = await axios.get("http://localhost:4000/todos");
+    const { data } = await api.get(`/todos`);
     setTodos(data);
   };
 
@@ -19,12 +20,16 @@ function App() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     // 버튼 클릭 시, input에 들어있는 값(state)를 이용하여 DB에 저장(post 요청)
+    await api.post("/todos", todo);
     fetchTodos();
+    setTodo({
+      title: "",
+    });
   };
 
   // 삭제 함수
   const onDeleteButtonClickHandler = async (id) => {
-    await axios.delete(`http://localhost:4000/todos/${id}`);
+    await api.delete(`/todos/${id}`);
     setTodos(
       todos.filter((item) => {
         return item.id !== id;
@@ -34,7 +39,7 @@ function App() {
 
   // 수정 함수
   const onUpdateButtonClickHandler = async () => {
-    await axios.patch(`http://localhost:4000/todos/${targetId}`, {
+    await api.patch(`/todos/${targetId}`, {
       title: contents,
     });
     setTodos(
@@ -77,9 +82,9 @@ function App() {
         <form onSubmit={onSubmitHandler}>
           <input
             type="text"
-            value={inputValue.title}
+            value={todo.title}
             onChange={(e) => {
-              setInputValue({
+              setTodo({
                 title: e.target.value,
               });
             }}
