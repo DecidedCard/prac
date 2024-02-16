@@ -17,6 +17,7 @@ const countSlice = createSlice({
   },
 });
 
+// 사용할 action을 바로 내보낼 수 있음.
 export const { addNumber, minusNumber } = countSlice.actions;
 
 export default countSlice.reducer;
