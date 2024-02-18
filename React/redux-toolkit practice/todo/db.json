@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "할일 1",
+      "contents": "리액트 공부",
+      "isDone": false
+    },
+    {
+      "id": "2",
+      "title": "할일 2",
+      "contents": "스프링 공부",
+      "isDone": true
+    },
+    {
+      "id": "3",
+      "title": "할일 3",
+      "contents": "운동",
+      "isDone": false
+    },
+    {
+      "id": "72050675-4672-4915-b56f-74b387724ee3",
+      "title": "안녕하세요",
+      "contents": "잘 부탁드립니다",
+      "isDone": false
+    }
+  ]
+}
